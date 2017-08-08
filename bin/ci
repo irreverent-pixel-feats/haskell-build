@@ -2,11 +2,7 @@
 
 bin/ci.branches
 
-# lol TRAVIS_BRANCH is the "target" branch
-# for PR builds...
-# that means 'master' for most prs...
-# https://docs.travis-ci.com/user/environment-variables/#Default-Environment-Variables
-if [ "${TRAVIS_PULL_REQUEST}" = 'false' ]; then
+if [ "${TRAVIS_BRANCH}" = 'master' ]; then
   docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
 
   for tag in 8.0.2 8.0.2-$(cat tars/version); do
