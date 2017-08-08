@@ -17,7 +17,7 @@ git-sha:
 
 deps: git-sha tars/mafia tars/git-${GIT_VERSION}.tar.gz
 
-build: deps Dockerfile.ubuntu.xenial
+build: deps Dockerfile
 	docker build --squash --tag irreverentpixelfeats/haskell-build-ubuntu-xenial:8.0.2
 	docker build --squash --tag irreverentpixelfeats/haskell-build-ubuntu-xenial:8.0.2-$(shell cat tars/version) -f Dockerfile.ubuntu.xenial .
 
