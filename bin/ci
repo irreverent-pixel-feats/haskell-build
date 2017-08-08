@@ -5,7 +5,7 @@ bin/ci.branches
 if [ "${TRAVIS_BRANCH}" = 'master' ]; then
   docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
 
-  for tag in 8.0.2 8.0.2-$(cat tars/version); do
+  for tag in 8.0.2 8.0.2-$(cat data/version); do
     docker push "irreverentpixelfeats/haskell-build-ubuntu-xenial:${tag}"
   done
 fi
