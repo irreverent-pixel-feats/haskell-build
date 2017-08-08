@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-MAINTAINER Dom De Re <domdere@domdere.com>
+MAINTAINER Dom De Re <domdere@irreverentpixelfeats.com>
 
 ENV GHC_VERSION=8.0.2
 ENV GIT_VERSION=2.13.2
@@ -26,7 +26,7 @@ RUN cabal update
 ADD tars tmp
 
 RUN cd /tmp \
-  && tar xzvf git-${GIT_VERSION}.tar.gz \
+  && (tar xzvf git-${GIT_VERSION}.tar.gz > /dev/null) \
   && cd /tmp/git-${GIT_VERSION} \
   && (find . -type f | grep "/\._" | while read F; do rm -rfv ${F}; done) \
   && make configure \
@@ -45,4 +45,4 @@ RUN mkdir -p /opt/mafia && cp -v /tmp/mafia /opt/mafia/mafia && /opt/mafia/mafia
 # docker hub changes)
 RUN mkdir -p /var/versions && cp -v /tmp/version /var/versions/haskell-build-ubuntu-xenial-8.0.2.version
 
-RUN cd /tmp && rm -rfv /tmp/*
+RUN cd /tmp && rm -rf /tmp/*
