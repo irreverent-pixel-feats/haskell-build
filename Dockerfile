@@ -40,6 +40,11 @@ RUN cd /tmp \
 ENV MAFIA_VERSION=08d64c797eb2ad9af7afdd747db3111e540bd67b
 RUN mkdir -p /opt/mafia && cp -v /tmp/mafia /opt/mafia/mafia && /opt/mafia/mafia upgrade ${MAFIA_VERSION}
 
+# stuff in the data dir is likely to change very frequently but doesnt actually affect the image much itself,
+# example: version SHAs
+# So adding it last should speed up the builds
+ADD data /tmp
+
 # Add the git-sha for the docker file to the image so if you need you can see where
 # your image sat in the timeline of git changes (which might be tricky to correlate with the
 # docker hub changes)
