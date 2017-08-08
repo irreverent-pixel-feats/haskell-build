@@ -1,9 +1,3 @@
 #!/bin/sh -eux
 
-ls | grep "^ghc-" | while read F; do
-  cd "${F}"
-  ls | grep "^Makefile" | while read M; do
-    make -f "${M}" build
-  done
-  cd ../
-done
+make build -j
