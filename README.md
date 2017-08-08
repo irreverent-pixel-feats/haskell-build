@@ -1,4 +1,4 @@
-# haskell-build [![Build Status](https://img.shields.io/travis/irreverent-pixel-feats/haskell-ubuntu-xenial-build-8.0.2?style=flat)](https://travis-ci.org/irreverent-pixel-feats/haskell-ubuntu-xenial-build-8.0.2)
+# haskell-build [![Build Status](https://img.shields.io/travis/irreverent-pixel-feats/haskell-ubuntu-xenial-build-8.0.2.svg?style=flat)](https://travis-ci.org/irreverent-pixel-feats/haskell-ubuntu-xenial-build-8.0.2)
 
 Docker images for a Haskell build environment
 
