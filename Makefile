@@ -12,19 +12,18 @@ tars/mafia: lib/src/mafia/mafia
 
 git-sha:
 	bin/git-version ./latest-version
-	diff -q latest-version tars/version || cp -v latest-version tars/version
+	diff -q latest-version data/version || cp -v latest-version data/version
 	rm latest-version
 
 deps: git-sha tars/mafia tars/git-${GIT_VERSION}.tar.gz
 
 build: deps Dockerfile
-	docker build --tag irreverentpixelfeats/haskell-build-ubuntu-xenial:8.0.2 .
-	docker build --tag irreverentpixelfeats/haskell-build-ubuntu-xenial:8.0.2-$(shell cat tars/version) .
+	docker build --cache-from irreverentpixelfeats/haskell-build-ubuntu-xenial:8.0.2 --tag irreverentpixelfeats/haskell-build-ubuntu-xenial:8.0.2 --tag irreverentpixelfeats/haskell-build-ubuntu-xenial:8.0.2-$(shell cat data/version) .
 
-../../images/haskell-build-ubuntu-xenial-8.0.2.tar.gz: build
-	docker image save -o ../../images/haskell-build-ubuntu-xenial-8.0.2.tar irreverentpixelfeats/haskell-build-ubuntu-xenial:8.0.2
-	cd ../../images && gzip -v haskell-build-ubuntu-xenial-8.0.2.tar
+images/haskell-build-ubuntu-xenial-8.0.2.tar.gz: build
+	docker image save -o images/haskell-build-ubuntu-xenial-8.0.2.tar irreverentpixelfeats/haskell-build-ubuntu-xenial:8.0.2
+	cd images && gzip -v haskell-build-ubuntu-xenial-8.0.2.tar
 
-image: ../../images/haskell-build-ubuntu-xenial-8.0.2.tar.gz
+image: images/haskell-build-ubuntu-xenial-8.0.2.tar.gz
 
 all: build image
