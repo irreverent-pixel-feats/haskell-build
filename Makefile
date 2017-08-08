@@ -12,7 +12,7 @@ tars/mafia: lib/src/mafia/mafia
 
 git-sha:
 	bin/git-version ./latest-version
-	diff -q latest-version tars/version || cp -v latest-version tars/version
+	diff -q latest-version data/version || cp -v latest-version data/version
 	rm latest-version
 
 deps: git-sha tars/mafia tars/git-${GIT_VERSION}.tar.gz
