@@ -14,7 +14,7 @@ ENV CABAL_VER=1.24
 
 ## deps
 RUN apt-get update -y \
-  && apt-get install -y software-properties-common autoconf automake build-essential libtool make gcc g++ libgmp-dev ncurses-dev libtinfo-dev python3 xz-utils dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev
+  && apt-get install -y software-properties-common autoconf automake build-essential libtool make gcc g++ libgmp-dev ncurses-dev libtinfo-dev python3 xz-utils dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev ssh
 RUN apt-add-repository -y "ppa:hvr/ghc" && apt-get update -y
 RUN apt-get install -y ghc-${GHC_VERSION} cabal-install-${CABAL_VER}
 RUN ln -sf /opt/ghc/bin/* /usr/local/bin
